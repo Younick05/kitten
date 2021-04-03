@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import DisplayCardContent from './DisplayCardContent';
 import { startGame } from '../Actions/startGameAction';
 import { flipCard } from '../Actions/flipCard';
-class HomePage extends Component {
+class GameBoard extends Component {
   componentWillMount() {
     this.props.startGame();
   }
@@ -39,4 +39,4 @@ const mapDispatchToProps = { startGame, flipCard };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomePage);
+)(GameBoard);
