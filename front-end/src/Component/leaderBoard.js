@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import GameBoard from './GameBoard';
 
 const useStyles = makeStyles({
   table: {
@@ -59,6 +60,7 @@ class LeaderBoard extends Component {
     return (
       <div style={{marginTop:"20px"}}>
         <RenderRankingTable />
+        <GameBoard />
       </div>
     )
   }

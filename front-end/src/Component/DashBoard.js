@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import services from '../Services/userServices'
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { setUserName } from '../Actions/setUserName';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -40,9 +42,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Form() {
-  const classes = useStyles();
 
+function Form(props) {
+  const classes = useStyles();
+  const {handleSubmit} = props.props
+  const setUserName = () => props.props.setUserName();
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -53,16 +57,12 @@ function Form() {
         <Typography component="h1" variant="h5">
           Enter User Name
         </Typography>
-        <form className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="userName"
-            label="User Name"
-            name="text"
-            autoFocus
+        <form className={classes.form} onSubmit={handleSubmit(setUserName)}>
+          <Field
+            name="userName"
+            component="input"
+            type="text"
+            placeholder="User Name"
           />
           <Button
             type="submit"
@@ -85,9 +85,19 @@ function Form() {
 class DashBoard extends Component {
   render () {
     return (
-      <Form />
+      <Form props={this.props} />
     )
   }
 }
 
-export default DashBoard
+DashBoard = reduxForm({
+  form: 'simple'
+})(DashBoard)
+
+const mapStateToProps = (state) => {return state};
+const mapDispatchToProps = { setUserName };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DashBoard);

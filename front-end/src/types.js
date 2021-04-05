@@ -7,3 +7,4 @@ export const SHUFFLE_CARD = 'SHUFFLE_CARD';
 export const EXPLODING_KITTEN_CARD = 'EXPLODING_KITTEN_CARD';
 export const GAME_OVER = 'GAME_OVER';
 export const GAME_WON = 'GAME_WON';
+export const SET_USER_NAME = 'SET_USER_NAME';
