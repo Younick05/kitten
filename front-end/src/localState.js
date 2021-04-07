@@ -6,4 +6,16 @@ const makeCard = () => {
   for (let index = 0; index < numberOfCard; index++) cardArray.push(cardObject[getRandomNumber()]);
   return cardArray;
 };
-export default makeCard;
+
+const createUser = () => {
+  const user = {
+    userName: '',
+    winning: '',
+    loose: '',
+  }
+}
+
+export default {
+  makeCard,
+  createUser
+};

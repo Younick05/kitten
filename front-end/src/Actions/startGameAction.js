@@ -1,7 +1,8 @@
 import * as types from '../types';
-import makeCard from '../genreateCard';
+import state from '../localState';
+
+const {makeCard} = state
 
 export const startGame = () => dispatch => {
-  console.log(makeCard());
   dispatch({ type: types.START_GAME, payload: makeCard() });
 };

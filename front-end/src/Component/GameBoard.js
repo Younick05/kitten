@@ -7,16 +7,22 @@ import Button from '@material-ui/core/Button';
 import DisplayCardContent from './DisplayCardContent';
 import { startGame } from '../Actions/startGameAction';
 import { flipCard } from '../Actions/flipCard';
+import UserDetails from './UserDetails';
+
 class GameBoard extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.startGame();
   }
   flipCard = () => this.props.flipCard();
   render() {
     const { cardFlipped, cardArray, defuseCardNumber, res } = this.props.card;
-    console.log(this.props.card);
     return (
       <Grid container direction='row' style={{ marginTop: 30 }}>
+        <Grid item sm={3} />
+        <Grid item xs={12} sm={6}>
+          <UserDetails />
+        </Grid>
+        <Grid item sm={3} />
         <Grid item sm={3} />
         <Grid item xs={12} sm={6}>
           <DisplayCardContent cardContent={cardFlipped} cardRemaining={cardArray.length} defuseCardNumber={defuseCardNumber} res={res} />

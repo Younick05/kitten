@@ -10,6 +10,8 @@ import Container from '@material-ui/core/Container';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { setUserName } from '../Actions/setUserName';
+import { renderTextField } from '../Util/RenderField';
+import userServices from '../Services/userServices';
 
 function Copyright() {
   return (
@@ -45,8 +47,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Form(props) {
   const classes = useStyles();
-  const {handleSubmit} = props.props
-  const setUserName = () => props.props.setUserName();
+  const {handleSubmit, userDetails} = props.props
+  const data = userDetails?.values
+  console.log("finding data", data)
+  console.log("finding data 2 ", userDetails)
+  const setUserName = () => {
+    props.props.setUserName();
+    userServices.create(data)
+    .then(() => props.props.history.push('/gameboard'))
+    .catch(e => console.log(e))
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -60,9 +71,11 @@ function Form(props) {
         <form className={classes.form} onSubmit={handleSubmit(setUserName)}>
           <Field
             name="userName"
-            component="input"
-            type="text"
-            placeholder="User Name"
+            component={renderTextField}
+            id="outlined-basic" 
+            label="User Name" 
+            placeholder="User Name" 
+            variant="outlined"
           />
           <Button
             type="submit"
@@ -91,10 +104,14 @@ class DashBoard extends Component {
 }
 
 DashBoard = reduxForm({
-  form: 'simple'
+  form: 'userDetails'
 })(DashBoard)
 
-const mapStateToProps = (state) => {return state};
+const mapStateToProps =  ({form}) => {
+  return {
+    userDetails : form && form.userDetails
+  }
+};
 const mapDispatchToProps = { setUserName };
 
 export default connect(

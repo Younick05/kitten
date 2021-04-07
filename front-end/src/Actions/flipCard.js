@@ -1,5 +1,6 @@
 import * as types from '../types';
 import { startGame } from './startGameAction';
+import userServices from '../Services/userServices'
 
 const removeCard = cardArray => {
   cardArray.pop();
@@ -21,6 +22,7 @@ const gameOver = () => {
   return { type: types.GAME_OVER };
 };
 const gameResult = () => {
+  // userServices.create
   return { type: types.GAME_WON };
 };
 export const flipCard = () => (dispatch, getState) => {

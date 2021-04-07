@@ -11,7 +11,6 @@ export default (state = initialState, action) => {
       return { ...state, cardFlipped };
     case types.REMOVE_CARD:
       const { cardArray } = action.payload;
-      console.log(cardArray);
       return { ...state, cardArray };
     case types.DEFUSE_CARD:
       const { defuseCardNumber, res } = action.payload;

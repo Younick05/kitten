@@ -7,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import GameBoard from './GameBoard';
 
 const useStyles = makeStyles({
   table: {
@@ -35,17 +34,17 @@ function RenderRankingTable() {
         <TableHead>
           <TableRow>
             <TableCell>Rank</TableCell>
-            <TableCell align="middle">User Name</TableCell>
+            <TableCell align="center">User Name</TableCell>
             <TableCell align="right">Score</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {rows.map((row, index) => (
+            <TableRow key={index}>
               <TableCell component="th" scope="row">
-                {row.calories}
+                {index+1}
               </TableCell>
-              <TableCell align="middle">{row.name}</TableCell>
+              <TableCell align="center">{row.name}</TableCell>
               <TableCell align="right">{row.fat}</TableCell>
             </TableRow>
           ))}
@@ -60,7 +59,6 @@ class LeaderBoard extends Component {
     return (
       <div style={{marginTop:"20px"}}>
         <RenderRankingTable />
-        <GameBoard />
       </div>
     )
   }

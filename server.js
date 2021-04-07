@@ -6,7 +6,7 @@ const logger = require('winston');
 const app = express()
 const {PORT} = process.env
 const server = app.listen(PORT)
-const routes = require('./routes/user-route');
+const routes = require('./routes/routes');
 
 app.use(cors())
 app.use(express.urlencoded({extended:false}));
