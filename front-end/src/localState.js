@@ -7,15 +7,4 @@ const makeCard = () => {
   return cardArray;
 };
 
-const createUser = () => {
-  const user = {
-    userName: '',
-    winning: '',
-    loose: '',
-  }
-}
-
-export default {
-  makeCard,
-  createUser
-};
+export default makeCard

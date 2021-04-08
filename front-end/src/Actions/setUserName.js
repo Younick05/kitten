@@ -1,10 +1,14 @@
 import * as types from '../types';
 
-export const setUserName = () => (dispatch, getState) => {
+export const setUserName = (userName, win, loose) => (dispatch, getState) => {
   const {userDetails : {values : {userName}}} = getState().form
-  console.log(" username :", userName)
+  console.log("getstate", getState(), userName)
   dispatch({
     type: types.SET_USER_NAME,
-    userName
+    payload: {
+      userName: userName,
+      win: win,
+      loose: loose
+    }
   })
 }

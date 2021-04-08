@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { setUserName } from '../Actions/setUserName';
 import { renderTextField } from '../Util/RenderField';
 import userServices from '../Services/userServices';
+import * as types from '../types';
+
 
 function Copyright() {
   return (
@@ -49,12 +51,20 @@ function Form(props) {
   const classes = useStyles();
   const {handleSubmit, userDetails} = props.props
   const data = userDetails?.values
-  console.log("finding data", data)
-  console.log("finding data 2 ", userDetails)
   const setUserName = () => {
-    props.props.setUserName();
     userServices.create(data)
-    .then(() => props.props.history.push('/gameboard'))
+    .then((res) => {
+      console.log("res", res)
+      const {config, data} = res
+      const {userName} = JSON.parse(config.data)
+      const {win, loose} = data
+      props.props.dispatch({
+        type: types.SET_USER_NAME,
+        payload: {userName, win, loose}
+      })
+      props.props.setUserName(userName, win, loose);
+      props.props.history.push('/gameboard')
+    })
     .catch(e => console.log(e))
   }
 

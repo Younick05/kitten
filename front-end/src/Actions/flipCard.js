@@ -1,6 +1,8 @@
 import * as types from '../types';
 import { startGame } from './startGameAction';
 import userServices from '../Services/userServices'
+import { connect } from 'react-redux';
+
 
 const removeCard = cardArray => {
   cardArray.pop();
@@ -18,14 +20,27 @@ const catCard = () => {
 const shuffleCard = () => {
   return { type: types.SHUFFLE_CARD };
 };
-const gameOver = () => {
+const gameOver = (user, dispatch) => {
+  const data = {...user, loose: parseInt(user.loose)+1 }
+  console.log(" data her", data)
+  userServices.create(data).then(()=>dispatch({
+    type: types.SET_USER_NAME,
+    payload: data
+  })).catch(e=> console.log("got error bro", e))
   return { type: types.GAME_OVER };
 };
-const gameResult = () => {
-  // userServices.create
+const gameResult = (user, dispatch) => {
+  const data = {...user, win: parseInt(user.win)+1 }
+  console.log(" data her 2", data)
+
+  userServices.create(data).then(()=>dispatch({
+    type: types.SET_USER_NAME,
+    payload: data
+  })).catch(e=> console.log("got error bro", e))
   return { type: types.GAME_WON };
 };
-export const flipCard = () => (dispatch, getState) => {
+export const flipCard = (user) => (dispatch, getState) => {
+  console.log("user i flip", user)
   const { cardArray, defuseCardNumber } = getState().card;
   const card = cardArray[cardArray.length - 1];
   dispatch(flippedCard(card));
@@ -34,7 +49,7 @@ export const flipCard = () => (dispatch, getState) => {
   if (card === 'Exploding kitten card') {
     if (defuseCardNumber !== 0) dispatch(defuseCard(defuseCardNumber - 1, 'Defuse Card Used'));
     else {
-      dispatch(gameOver());
+      dispatch(gameOver(user, dispatch));
       setTimeout(() => dispatch(startGame()), 2000);
     }
   }
@@ -43,7 +58,7 @@ export const flipCard = () => (dispatch, getState) => {
     setTimeout(() => dispatch(startGame()), 1300);
   }
   if (cardArray.length === 0) {
-    dispatch(gameResult());
+    dispatch(gameResult(user, dispatch));
     setTimeout(() => dispatch(startGame()), 2000);
   }
   dispatch(removeCard(cardArray));

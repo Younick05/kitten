@@ -1,16 +1,19 @@
 const client = require('../redis')
 
 const userDetails = (req, res) => {
-  let { userName, winning, loose } = req.body
-  winning = winning || 0;
+  console.log("why worry", req.body)
+  let { userName, win, loose } = req.body
+  win = win || 0;
   loose = loose || 0;
-  client.hmset(userName, {
-    'win': winning,
+  client.hset(userName, {
+    'win': win,
     'loose': loose
   }, (error, reply) => {
-    if (error) res.status(400).send("error :", error)
+    console.log("reply chahiye", reply)
+    if (error) res.status(400).send("error :>", error)
     else {
       client.hgetall(userName, (e, obj) => {
+        console.log(obj)
         res.status(200).send(obj)
       })
     }

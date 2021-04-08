@@ -21,24 +21,23 @@ const UserCard = (props) => {
 
 class UserDetails extends Component {
   render() {
+    const {userName, win, loose} = this.props.userDetails
     return (
       <>
         <Grid container>
-          <UserCard size={3} type={'Win :'} value={'5'} />
-          <UserCard size={5} value={'NIKHIL'} />
-          <UserCard size={3} type={'Loose :'} value={'5'} />
+          <UserCard size={3} type={'Win :'} value={win} />
+          <UserCard size={5} value={userName} />
+          <UserCard size={3} type={'Loose :'} value={loose} />
         </Grid>
       </>
     )
   }
 }
 
-const mapStateToProps =  (state, {form, card}) => {
-  console.log(" check here ", state)
-  console.log(" check here 2 ", form)
-  console.log(" check here 3 ", card)
+const mapStateToProps =  ({user, card}) => {
+  console.log("state", user)
   return {
-    userDetails : form && form.userDetails
+    userDetails : user
   }
 };
 
