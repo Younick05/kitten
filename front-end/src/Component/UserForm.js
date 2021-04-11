@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  field: {
+    width: '100%'
+  }
 }));
 
 
@@ -54,7 +57,6 @@ function Form(props) {
   const setUserName = () => {
     userServices.create(data)
     .then((res) => {
-      console.log("res", res)
       const {config, data} = res
       const {userName} = JSON.parse(config.data)
       const {win, loose} = data
@@ -86,6 +88,7 @@ function Form(props) {
             label="User Name" 
             placeholder="User Name" 
             variant="outlined"
+            className={classes.field}
           />
           <Button
             type="submit"
@@ -105,7 +108,7 @@ function Form(props) {
   );
 }
 
-class DashBoard extends Component {
+class UserForm extends Component {
   render () {
     return (
       <Form props={this.props} />
@@ -113,9 +116,9 @@ class DashBoard extends Component {
   }
 }
 
-DashBoard = reduxForm({
+UserForm = reduxForm({
   form: 'userDetails'
-})(DashBoard)
+})(UserForm)
 
 const mapStateToProps =  ({form}) => {
   return {
@@ -127,4 +130,4 @@ const mapDispatchToProps = { setUserName };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashBoard);
+)(UserForm);

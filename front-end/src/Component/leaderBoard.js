@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import userServices from '../Services/userServices';
+import _ from 'lodash';
 
 const useStyles = makeStyles({
   table: {
@@ -14,19 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-function RenderRankingTable() {
+function RenderRankingTable(props) {
   const classes = useStyles();
   return (
     <TableContainer component={Paper}>
@@ -35,17 +25,19 @@ function RenderRankingTable() {
           <TableRow>
             <TableCell>Rank</TableCell>
             <TableCell align="center">User Name</TableCell>
-            <TableCell align="right">Score</TableCell>
+            <TableCell align="right">Win</TableCell>
+            <TableCell align="right">Loose</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
+          {props.userDetails && props.userDetails.map((row, index) => (
             <TableRow key={index}>
               <TableCell component="th" scope="row">
-                {index+1}
+                {index + 1}
               </TableCell>
-              <TableCell align="center">{row.name}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="center">{row.userName}</TableCell>
+              <TableCell align="right">{row.win}</TableCell>
+              <TableCell align="right">{row.loose}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -55,10 +47,20 @@ function RenderRankingTable() {
 }
 
 class LeaderBoard extends Component {
+  state = {
+    users: []
+  }
+
+  componentDidMount() {
+    userServices.getAll().then(res => {
+      this.setState({users: _.orderBy(res.data, ['win'], ['desc'])})
+    })
+  }
+
   render() {
     return (
-      <div style={{marginTop:"20px"}}>
-        <RenderRankingTable />
+      <div style={{ marginTop: "20px" }}>
+        <RenderRankingTable userDetails = {this.state.users} />
       </div>
     )
   }

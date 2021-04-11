@@ -5,7 +5,7 @@ const create = data => {
 }
 
 const getAll = () => {
-  return http.get("/user");
+  return http.get("/users");
 };
 
 export default {

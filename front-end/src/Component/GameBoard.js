@@ -15,7 +15,6 @@ class GameBoard extends Component {
   }
   flipCard = () => this.props.flipCard(this.props.user);
   render() {
-    console.log("llll",this.props.user)
     const { cardFlipped, cardArray, defuseCardNumber, res } = this.props.card;
     return (
       <Grid container direction='row' style={{ marginTop: 30 }}>

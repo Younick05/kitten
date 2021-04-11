@@ -34,8 +34,7 @@ class UserDetails extends Component {
   }
 }
 
-const mapStateToProps =  ({user, card}) => {
-  console.log("state", user)
+const mapStateToProps =  ({user}) => {
   return {
     userDetails : user
   }

@@ -5,12 +5,12 @@ const userDetails = (req, res) => {
   let { userName, win, loose } = req.body
   win = win || 0;
   loose = loose || 0;
-  client.hset(userName, {
+  client.hmset(userName, {
     'win': win,
     'loose': loose
   }, (error, reply) => {
     console.log("reply chahiye", reply)
-    if (error) res.status(400).send("error :>", error)
+    if (error) res.status(500).send("error :>", error.toString())
     else {
       client.hgetall(userName, (e, obj) => {
         console.log(obj)

@@ -35,7 +35,7 @@ function NavigationBar() {
           <Typography variant="h6" className={classes.title}>
             Exploading Kitten
             </Typography>
-          <Link to='/dashboard' className={classes.link}><Button color="inherit">Play Game</Button></Link>
+          <Link to='/userform' className={classes.link}><Button color="inherit">Play Game</Button></Link>
         </Toolbar>
       </AppBar>
     </div>
