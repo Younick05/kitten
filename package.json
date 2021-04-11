@@ -1,13 +1,13 @@
 {
   "name": "Exploding-Kitten-Game",
   "version": "1.0.0",
-  "description": "",
+  "description": "Exploading kitten is free single user card game",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "node server.js",
+    "devServer": "nodemon server.js",
     "client": "npm start --prefix front-end",
-    "dev": "concurrently \" npm run server\" \"npm run client\" "
+    "dev": "concurrently \" npm run devServer\" \"npm run client\" "
   },
   "keywords": [],
   "author": "",

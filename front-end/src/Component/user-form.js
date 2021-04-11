@@ -9,9 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { setUserName } from '../Actions/setUserName';
-import { renderTextField } from '../Util/RenderField';
-import userServices from '../Services/userServices';
+import { setUserName } from '../Actions/set-user-name';
+import { renderTextField } from '../Util/render-field';
+import userServices from '../Services/user-services';
 import * as types from '../types';
 
 

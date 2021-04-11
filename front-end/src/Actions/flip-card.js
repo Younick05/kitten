@@ -1,6 +1,6 @@
 import * as types from '../types';
-import { startGame } from './startGameAction';
-import userServices from '../Services/userServices'
+import { startGame } from './start-game-action';
+import userServices from '../Services/user-services'
 import { connect } from 'react-redux';
 
 

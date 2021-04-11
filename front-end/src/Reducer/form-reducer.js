@@ -1,7 +1,7 @@
 import * as types from '../types';
 
 const initialState = {
-    userName: 'Welcome',
+    userName: 'WelcomeUnick',
     win: 0,
     loose: 0,
   }

@@ -6,9 +6,19 @@
 
 Install all the dependencies for the app.
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### `npm run devServer`
+
+Runs the nodemon server of the app in the development mode.<br>
+Open [http://localhost:3131](http://localhost:3131) to view it in the browser.
+
+### `npm start`
+
+Runs the front-end of the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Rules
@@ -17,5 +27,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - If the card is exploding kitten (bomb) then the player loses the game.
 - If the card is defuse card then the card is removed from the deck. Also that card can be used to defuse one bomb that may come in subsequent cards drawn from deck.
 - If the card is shuffle card then the game is restarted and the deck is filled with 5 cards again.
-
-redis pass = HT9uwtP7HVt3nGMyXQcWpl49q3dqHJTP

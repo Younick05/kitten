@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import DisplayCardContent from './DisplayCardContent';
-import { startGame } from '../Actions/startGameAction';
-import { flipCard } from '../Actions/flipCard';
-import UserDetails from './UserDetails';
+import DisplayCardContent from './display-card-content';
+import { startGame } from '../Actions/start-game-action';
+import { flipCard } from '../Actions/flip-card';
+import UserDetails from './user-details';
 
 class GameBoard extends Component {
   componentDidMount() {

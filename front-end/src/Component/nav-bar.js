@@ -30,7 +30,6 @@ function NavigationBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          
           <Link to='/' className={classes.link}><Button color="inherit">Leader Board</Button></Link>
           <Typography variant="h6" className={classes.title}>
             Exploading Kitten
